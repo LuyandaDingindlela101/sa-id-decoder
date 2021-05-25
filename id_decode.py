@@ -46,6 +46,9 @@ def get_gender(id_sequence):
 
 #    FUNCTION WILL RETURN THE USERS AGE
 def get_age(year_of_birth):
+    #  TURN year_of_birth INTO A LIST SO WE CAN ACCESS THE YEAR AT THE LAST INDEX
+    year_of_birth = int(year_of_birth.split()[-1])
+
     #    GET THE CURRENT YEAR, THEN SUBTRACT THE USERS year_of_birth
     return datetime.now().year - year_of_birth
 
@@ -102,16 +105,14 @@ def test_id_valid(id_number):
         return "invalid"
 
 
-def decode_id():
+def decode_id(id_number):
     #    FIRST WE GET THE USERS NAME AND ID NUMBER
-    # user_name = input("Please input your name: ")
     #    WE MAKE SURE NOT TO CONVERT TO CONVERT THE id_number SO THAT WE CAN GET THE DIFFERENT PARTS OF THE STRING
-    # id_number = input("Please input your id number: ")
-    id_number = "7704220588081"
     #    CHECK IF THE id_number IS EQUAL TO 13 NUMBERS
     if len(id_number) == 13:
         if test_id_valid(id_number) == "valid":
             print(get_dob(id_number[:6]))
+            get_age(get_dob(id_number[:6]))
             print(get_gender(id_number[6:10]))
             print(get_citizenship(id_number[10]))
         else:
